@@ -33,12 +33,13 @@ CREATE TABLE event_details (
     FOREIGN KEY (updated_by) REFERENCES user (id)
 );
 
-
 CREATE TABLE event_purchase (
     id VARCHAR(100) PRIMARY KEY,
     event_details_id VARCHAR(100),
     student_id VARCHAR(100),
     mode_of_payement VARCHAR(50),
+    created_by  VARCHAR(100),
+    updated_by  VARCHAR(100),
     FOREIGN KEY (event_details_id) REFERENCES event_details(id),
     FOREIGN KEY (student_id) REFERENCES student(id)
 );
