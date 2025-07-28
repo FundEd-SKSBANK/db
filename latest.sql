@@ -79,6 +79,23 @@ FOREIGN KEY (updated_by) REFERENCES user(id),
 FOREIGN KEY (student_id) REFERENCES student(id)
 );
 
+CREATE TABLE event_details(
+id              VARCHAR(40)  PRIMARY KEY,
+name            VARCHAR(30)  NOT NULL,
+type            VARCHAR(30)  NOT NULL,
+updated_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+cost            INT          NOT NULL,
+description     VARCHAR(30)  NOT NULL,
+event_date      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+deadline        TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+class_id        VARCHAR(40),
+created_by      VARCHAR(30),
+updated_by      VARCHAR(30),
+created_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (updated_by) REFERENCES user(id),
+FOREIGN KEY (created_by) REFERENCES user(id),
+FOREIGN KEY (class_id) REFERENCES class(id)
+);
 
 CREATE TABLE payment_details(
 id              VARCHAR(40)  PRIMARY KEY,
@@ -92,23 +109,6 @@ FOREIGN KEY (payment_id) REFERENCES payment(id),
 FOREIGN KEY (event_details) REFERENCES event_details(id)
 );
 
-CREATE TABLE event_details(
-id              VARCHAR(40)  PRIMARY KEY,
-name            VARCHAR(30)  NOT NULL,
-type            VARCHAR(30)  NOT NULL,
-updated_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-cost            INT          NOT NULL,
-description     VARCHAR(30)  NOT NULL,
-event_date      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-deadline        TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-class_id        INT,
-created_by      VARCHAR(30),
-updated_by      VARCHAR(30),
-created_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
-FOREIGN KEY (updated_by) REFERENCES user(id),
-FOREIGN KEY (created_by) REFERENCES user(id),
-FOREIGN KEY (class_id) REFERENCES class(id)
-);
 
 CREATE TABLE event_purchase(
 id                VARCHAR(40) PRIMARY KEY,
