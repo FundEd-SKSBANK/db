@@ -99,7 +99,7 @@ FOREIGN KEY (class_id) REFERENCES class(id)
 
 CREATE TABLE payment_details(
 id              VARCHAR(40)  PRIMARY KEY,
-payment_id      INT,
+payment_id      VARCHAR(30),
 event_id   VARCHAR(30),
 amount          INT          NOT NULL,
 discount        INT          NOT NULL,
