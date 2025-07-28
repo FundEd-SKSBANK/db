@@ -1,48 +1,62 @@
-CREATE TABLE user (
-    id          VARCHAR(100) PRIMARY KEY,
-    name        VARCHAR(30),
-    email_id    VARCHAR(30),
-    ph_no       INT(15),
-    password    VARCHAR(200)
+CREATE TABLE user(
+id 		VARCHAR(40) 	PRIMARY KEY, 
+name 		VARCHAR(30)    NOT NULL,
+email_id 	VARCHAR(30)	NOT NULL, 
+ph_no 		VARCHAR(15)	NOT NULL,
+role 		VARCHAR(20)	NOT NULL,
+password 	VARCHAR(200)	NOT NULL,
+created_at	VARCHAR(30)	NOT NULL,
+updated_at	VARCHAR(30)	NOT NULL,
 );
 
-CREATE TABLE student (
-    id          VARCHAR(100) PRIMARY KEY,
-    name        VARCHAR(30),
-    email_id    VARCHAR(30),
-    ph_no       INT(15),
-    roll_no     INT,
-    created_by  VARCHAR(100),
-    updated_by  VARCHAR(100),
-    created_at  TIME,
-    updated_at  TIME,
-    FOREIGN KEY (created_by) REFERENCES user (id),
-    FOREIGN KEY (updated_by) REFERENCES user (id)
+CREATE TABLE class{
+id		VARCHAR(30)	NOT NULL,
+name		VARCHAR(30)	NOT NULL,
+section	VARCHAR(10)	NOT NULL,
+year		VARCHAR(10)	NOT NULL,
+created_by	VARCHAR(30)	NOT NULL,
+updated_by	VARCHAR(30)	NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (created_by) REFERENCES USER (id),FOREIGN KEY (updated_by) REFERENCES USER (id)
+}
+
+
+
+CREATE TABLE student(
+id 		VARCHAR(40) 	PRIMARY KEY, 
+name 		VARCHAR(30) 	NOT NULL,
+email_id 	VARCHAR(30),
+ph_no 		VARCHAR(15),
+roll_no 	INT,
+class_id	VARCHAR(40),
+created_by 	VARCHAR(100),
+updated_by 	VARCHAR(100),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (created_by) REFERENCES user (id),FOREIGN KEY (updated_by) REFERENCES user (id),FOREIGN KEY (class_id) REFERENCES class (id)
+); 
+
+CREATE TABLE fund_transaction(
+id                VARCHAR(40)	PRIMARY KEY,
+class_id          VARCHAR(40),	
+transaction_type  VARCHAR(30)  NOT NULL,
+amount            DECIMAL(20)  NOT NULL,
+description       VARCHAR(200) NOT NULL,
+reference_id      VARCHAR(100) NOT NULL,
+transaction_date  DATE         NOT NULL,
+created_by	   VARCHAR(100),
+created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (created_by) REFERENCES user (id),FOREIGN KEY (class_id) REFERENCES class (id)
 );
 
-CREATE TABLE event_details (
-    id          VARCHAR(100) PRIMARY KEY,
-    name        VARCHAR(100),
-    type        VARCHAR(20),
-    cost        VARCHAR(50),
-    created_by  VARCHAR(100),
-    updated_by  VARCHAR(100),
-    created_at  TIME,
-    updated_at  TIME,
-    FOREIGN KEY (created_by) REFERENCES user (id),
-    FOREIGN KEY (updated_by) REFERENCES user (id)
+CREATE TABLE fund_balance(
+id                VARCHAR(40)	PRIMARY KEY,
+class_id          VARCHAR(40),	
+balance	  DECIMAL(10)	NOT NULL,
+last_update	  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 );
 
-CREATE TABLE event_purchase (
-    id VARCHAR(100) PRIMARY KEY,
-    event_details_id VARCHAR(100),
-    student_id VARCHAR(100),
-    mode_of_payement VARCHAR(50),
-    created_by  VARCHAR(100),
-    updated_by  VARCHAR(100),
-    FOREIGN KEY (event_details_id) REFERENCES event_details(id),
-    FOREIGN KEY (student_id) REFERENCES student(id)
-);
 
 
 
