@@ -100,13 +100,13 @@ FOREIGN KEY (class_id) REFERENCES class(id)
 CREATE TABLE payment_details(
 id              VARCHAR(40)  PRIMARY KEY,
 payment_id      INT,
-event_details   VARCHAR(30),
+event_id   VARCHAR(30),
 amount          INT          NOT NULL,
 discount        INT          NOT NULL,
 final_amt       INT          NOT NULL,
 created_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (payment_id) REFERENCES payment(id),
-FOREIGN KEY (event_details) REFERENCES event_details(id)
+FOREIGN KEY (event_id) REFERENCES event_details(id)
 );
 
 
