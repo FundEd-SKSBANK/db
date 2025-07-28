@@ -55,6 +55,7 @@ id                VARCHAR(40)	PRIMARY KEY,
 class_id          VARCHAR(40),	
 balance	  DECIMAL(10)	NOT NULL,
 last_update	  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+FOREIGN KEY (class_id) REFERENCES class (id)
 );
 
 
