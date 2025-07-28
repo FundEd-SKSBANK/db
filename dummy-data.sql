@@ -1,40 +1,24 @@
-INSERT INTO user (id, name, email_id, ph_no, password) 
-VALUES ('2', 'john', 'john@example.com', 9876543210, 'john@123');
 
+INSERT INTO user (id, name, email_id, ph_no, role, password) VALUES
+('admin1', 'Admin User', 'admin@college.edu', '9876543210', 'admin', 'adminpass'),
+('staff1', 'Class Staff', 'staff@college.edu', '9876543211', 'staff', 'staffpass');
 
+INSERT INTO class (id, name, section, year, created_by, updated_by) VALUES
+('class_csa_s5', 'CSA S5 CSE', 'A', '2023', 'admin1', 'admin1');
 
-INSERT INTO student (name, id, email_id, ph_no, roll_no, created_by, updated_by, created_at, updated_at) VALUES
-('sabin', 1, 'sabin@example.com', 9800000001, 52, 1, 1, '10:00:00', '10:00:00'),
-('gautham', 2, 'gautham@example.com', 9800000002, 33, 1, 1, '10:00:00', '10:00:00'),
-('amil', 3, 'amil@example.com', 9800000003, 18, 1, 1, '10:00:00', '10:00:00'),
-('john', 4, 'john@example.com', 9800000004, 19, 1, 1, '10:00:00', '10:00:00'),
-('jane', 5, 'jane@example.com', 9800000005, 20, 1, 1, '10:00:00', '10:00:00'),
-('alice', 6, 'alice@example.com', 9800000006, 21, 1, 1, '10:00:00', '10:00:00'),
-('bob', 7, 'bob@example.com', 9800000007, 22, 1, 1, '10:00:00', '10:00:00'),
-('charlie', 8, 'charlie@example.com', 9800000008, 23, 1, 1, '10:00:00', '10:00:00'),
-('diana', 9, 'diana@example.com', 9800000009, 24, 1, 1, '10:00:00', '10:00:00'),
-('eve', 10, 'eve@example.com', 9800000010, 25, 1, 1, '10:00:00', '10:00:00');
+INSERT INTO student (id, name, email_id, ph_no, roll_no, class_id, created_by, updated_by) VALUES
+('stu_001', 'Sabin', 'sabin@college.edu', '9447823456', 52, 'class_csa_s5', 'staff1', 'staff1'),
+('stu_002', 'Gautham', 'gautham@college.edu', '9447823457', 33, 'class_csa_s5', 'staff1', 'staff1'),
+('stu_003', 'Geo', 'geo@college.edu', '9447823458', 34, 'class_csa_s5', 'staff1', 'staff1'),
+('stu_004', 'Shawkath', 'shawkath@college.edu', '9447823459', 44, 'class_csa_s5', 'staff1', 'staff1'),
+('stu_005', 'Sherin', 'sherin@college.edu', '9447823460', 54, 'class_csa_s5', 'staff1', 'staff1'),
+('stu_006', 'Madhan', 'madhan@college.edu', '9447823461', 56, 'class_csa_s5', 'staff1', 'staff1'),
+('stu_007', 'Amil', 'amil@college.edu', '9447823462', 18, 'class_csa_s5', 'staff1', 'staff1');
 
+INSERT INTO fund_transaction (id, class_id, transaction_type, amount, description, reference_id, transaction_date, created_by) VALUES
+('ft_001', 'class_csa_s5', 'DEPOSIT', 50000.00, 'Class Fund Opening', 'REF001', '2023-09-01', 'staff1'),
+('ft_002', 'class_csa_s5', 'EXPENSE', 12000.00, 'Lab Equipment', 'REF002', '2023-09-05', 'staff1'),
+('ft_003', 'class_csa_s5', 'DEPOSIT', 25000.00, 'College Grant', 'REF003', '2023-09-10', 'staff1');
 
-
-INSERT INTO event_details (id,name,type, cost,, created_by, updated_by, created_at, updated_at) VALUES
-("we-2342-23412","DBMS_LAB_RECORD","print","100",1, 1, '10:00:00', '10:00:00');
-
-
-INSERT INTO event_purchase (
-    id, 
-    event_details_id, 
-    student_id, 
-    mode_of_payement,  -- Corrected column name
-    created_by, 
-    updated_by
-) VALUES (
-    "we-23433-23412", 
-    "we-2342-23412", 
-    "1", 
-    "cash", 
-    '10:00:00', 
-    '10:00:00'
-);
-
- 
+INSERT INTO fund_balance (id, class_id, balance) VALUES
+('fb_001', 'class_csa_s5', 63000.00);
