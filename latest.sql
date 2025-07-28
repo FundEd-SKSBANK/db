@@ -112,9 +112,9 @@ FOREIGN KEY (event_id) REFERENCES event_details(id)
 
 CREATE TABLE event_purchase(
 id                VARCHAR(40) PRIMARY KEY,
-event_details_id  INT,
-student_id        INT,
-payment_id        INT,
+event_details_id  VARCHAR(30),
+student_id        VARCHAR(30),
+payment_id        VARCHAR(30),
 updated_at        TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
 created_at        TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
 created_by	      VARCHAR(30),
