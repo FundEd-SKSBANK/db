@@ -1,4 +1,3 @@
--- Create tables (if not already created)
 CREATE TABLE user(
     id VARCHAR(40) PRIMARY KEY, 
     name VARCHAR(30) NOT NULL,
