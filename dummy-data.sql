@@ -316,6 +316,24 @@ mysql> select AVG(cost) AS average_event_cost from event_details;
 |           250.0000 |
 +--------------------+
 1 row in set (0.00 sec)
+mysql> select SUM(amount) from fund_transfers;
++-------------+
+| SUM(amount) |
++-------------+
+|       87000 |
++-------------+
+1 row in set (0.00 sec)
+mysql> SELECT c.year, COUNT(s.id) AS student_count
+    -> FROM student s
+    -> JOIN class c ON s.class_id = c.id
+    -> GROUP BY c.year;
++------+---------------+
+| year | student_count |
++------+---------------+
+| 2023 |             7 |
++------+---------------+
+1 row in set (0.01 sec)
+
 
 
 
