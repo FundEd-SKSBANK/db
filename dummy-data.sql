@@ -317,5 +317,104 @@ mysql> select AVG(cost) AS average_event_cost from event_details;
 +--------------------+
 1 row in set (0.00 sec)
 
+mysql> select sum(amount) as total_amount
+    -> from fund_transfers;
++--------------+
+| total_amount |
++--------------+
+|        87000 |
++--------------+
+1 row in set (0.01 sec)
 
+mysql> select count(*) as total_students 
+    -> from student
+    -> where class_id="class_csa_s5";
++----------------+
+| total_students |
++----------------+
+|              7 |
++----------------+
+1 row in set (0.00 sec)
 
+mysql> select count(*) as total_students 
+    -> from student
+    -> where class_id="class_csa_s5";
++----------------+
+| total_students |
++----------------+
+|              7 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT class_id,
+    -> COUNT(*) AS no_of_students
+    -> FROM student
+    -> GROUP BY class_id HAVING COUNT(*)>3;
++--------------+----------------+
+| class_id     | no_of_students |
++--------------+----------------+
+| class_csa_s5 |              7 |
++--------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 
+    ->     event_id,
+    ->     SUM(amount) AS total_funds
+    -> FROM 
+    ->     payment_details
+    -> GROUP BY 
+    ->     event_id
+    -> HAVING 
+    ->     SUM(amount) > (
+    ->         SELECT 
+    ->             AVG(total_amount)
+    ->         FROM (
+    ->             SELECT 
+    ->                 SUM(amount) AS total_amount
+    ->             FROM 
+    ->                 payment_details
+    ->             GROUP BY 
+    ->                 event_id
+    ->         ) AS event_totals
+    ->     );
++-----------+-------------+
+| event_id  | total_funds |
++-----------+-------------+
+| event_001 |         900 |
++-----------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select id,name,cost
+    -> from event_details
+    -> order by cost desc;
++-----------+-----------+------+
+| id        | name      | cost |
++-----------+-----------+------+
+| event_001 | Tech Fest |  300 |
+| event_002 | Farewell  |  200 |
++-----------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> select *
+    -> from fund_transfers
+    -> order by transaction_date desc;
++--------+--------------+------------------+--------+--------------------+--------------+------------------+------------+---------------------+
+| id     | class_id     | transaction_type | amount | description        | reference_id | transaction_date | created_by | created_at          |
++--------+--------------+------------------+--------+--------------------+--------------+------------------+------------+---------------------+
+| ft_003 | class_csa_s5 | DEPOSIT          |  25000 | College Grant      | REF003       | 2023-09-10       | staff1     | 2025-08-04 14:02:35 |
+| ft_002 | class_csa_s5 | EXPENSE          |  12000 | Lab Equipment      | REF002       | 2023-09-05       | staff1     | 2025-08-04 14:02:35 |
+| ft_001 | class_csa_s5 | DEPOSIT          |  50000 | Class Fund Opening | REF001       | 2023-09-01       | staff1     | 2025-08-04 14:02:35 |
++--------+--------------+------------------+--------+--------------------+--------------+------------------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select  class_id,
+    -> count(*) as student_count
+    -> from student
+    -> group by class_id
+    -> order by student_count desc;
++--------------+---------------+
+| class_id     | student_count |
++--------------+---------------+
+| class_csa_s5 |             7 |
++--------------+---------------+
+1 row in set (0.00 sec)
