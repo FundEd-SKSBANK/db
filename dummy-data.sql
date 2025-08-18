@@ -77,7 +77,6 @@ mysql> INSERT INTO event_details (id, name, type, cost, description, event_date,
 Query OK, 2 rows affected (0.00 sec)
 Records: 2  Duplicates: 0  Warnings: 0
 
-mysql> 
 mysql> INSERT INTO payment (id, student_id, payment_method, total_amt, payment_status, transaction_id, reciept_number, notes, updated_by, created_by)
     -> VALUES
     -> ('pay_001', 'stu_001', 'Cash', 300, 'Paid', 1111, 5001, 'Paid for Tech Fest', 'staff1', 'staff1'),
@@ -86,8 +85,7 @@ mysql> INSERT INTO payment (id, student_id, payment_method, total_amt, payment_s
     -> ('pay_004', 'stu_004', 'Online', 500, 'Paid', 1114, 5004, 'Paid for both events', 'staff1', 'staff1');
 Query OK, 4 rows affected (0.01 sec)
 Records: 4  Duplicates: 0  Warnings: 0
-
-mysql> 
+ 
 mysql> INSERT INTO payment_details (id, payment_id, event_id, amount, discount, final_amt)
     -> VALUES
     -> ('pd_001', 'pay_001', 'event_001', 300, 0, 300),
@@ -98,7 +96,6 @@ mysql> INSERT INTO payment_details (id, payment_id, event_id, amount, discount, 
 Query OK, 5 rows affected (0.01 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 
-mysql> 
 mysql> INSERT INTO event_purchase (id, event_details_id, student_id, payment_id, created_by, purchase_status, purchase_date)
     -> VALUES
     -> ('ep_001', 'event_001', 'stu_001', 'pay_001', 'staff1', 'Confirmed', '2023-10-01'),
@@ -121,15 +118,6 @@ mysql> select * from event_purchase;
 +--------+------------------+------------+------------+---------------------+---------------------+------------+-----------------+---------------+
 5 rows in set (0.00 sec)
 
-mysql> uppdate event_purchase
-    -> update event_purchase
-    -> ;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'uppdate event_purchase
-update event_purchase' at line 1
-mysql> update event_purchase
-    -> set id="ep_001"
-    -> update event_purchase;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update event_purchase' at line 3
 mysql> update event_purchase
     -> set purchase_status="Approved"
     -> where id="ep_001";
@@ -148,15 +136,6 @@ mysql> select * from event_purchase;
 +--------+------------------+------------+------------+---------------------+---------------------+------------+-----------------+---------------+
 5 rows in set (0.01 sec)
 
-mysql> alter student
-    -> ;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student' at line 1
-mysql> alter table student
-    -> alter column class_id type varchar(50);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'type varchar(50)' at line 2
-mysql> alter table student
-    -> alter column class_id varchar(50);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(50)' at line 2
 mysql> alter table student
     -> modify column class_id varchar(50);
 Query OK, 0 rows affected (0.02 sec)
@@ -220,9 +199,6 @@ mysql> desc user;
 +------------+--------------+------+-----+-------------------+-----------------------------------------------+
 8 rows in set (0.00 sec)
 
-mysql> alter table event_details
-    -> rename event_date to event_day;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to event_day' at line 2
 mysql> alter table event_details
     -> rename column event_date to event_day;
 Query OK, 0 rows affected (0.03 sec)
@@ -459,7 +435,7 @@ mysql> SELECT
 | Shawkath     | CSA S5 CSE |       500 | Online         |
 +--------------+------------+-----------+----------------+
 
-SELECT 
+mysql> SELECT 
     ->     ft.id,
     ->     c.name AS class_name,
     ->     ft.transaction_type,
@@ -482,7 +458,6 @@ SELECT
 | ft_002 | CSA S5 CSE | EXPENSE          |  12000 | Lab Equipment      | REF002       | 2023-09-05       | Class Staff     | 2025-07-28 14:52:39 |
 | ft_003 | CSA S5 CSE | DEPOSIT          |  25000 | College Grant      | REF003       | 2023-09-10       | Class Staff     | 2025-07-28 14:52:39 |
 +--------+------------+------------------+--------+--------------------+--------------+------------------+-----------------+---------------------+
-
 
 mysql> SELECT 
     ->     s.id,
@@ -520,7 +495,6 @@ mysql> SELECT
 +---------+----------+------------+
 | stu_004 | Shawkath |        500 |
 +---------+----------+------------+
-
 
 mysql> SELECT DISTINCT s.id, s.name
     -> FROM event_purchase ep
