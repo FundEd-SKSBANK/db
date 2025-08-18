@@ -1,4 +1,6 @@
 
+<---------------------------------------- EXPERINMENT_NO : 2 ----------------------------------------->
+    
 INSERT INTO user (id, name, email_id, ph_no, role, password) VALUES
 ('admin1', 'Admin User', 'admin@college.edu', '9876543210', 'admin', 'adminpass'),
 ('staff1', 'Class Staff', 'staff@college.edu', '9876543211', 'staff', 'staffpass');
@@ -51,8 +53,7 @@ VALUES
 ('ep_004', 'event_001', 'stu_004', 'pay_004', 'staff1', 'Confirmed', '2023-10-03'),
 ('ep_005', 'event_002', 'stu_004', 'pay_004', 'staff1', 'Confirmed', '2023-11-02');
 
-
-
+<---------------------------------------- EXPERINMENT_NO : 3 ----------------------------------------->
 
 mysql> update user
     -> set role="admin"
@@ -246,14 +247,6 @@ mysql> desc event_details;
 +-------------+-------------+------+-----+-------------------+-------------------+
 12 rows in set (0.00 sec)
 
-mysql> alter table fund_transaction
-    -> rename table fund_transaction to fund_transfers;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table fund_transaction to fund_transfers' at line 2
-mysql> rename table fund_transcation to fund_transfers;
-rename table fund_transcation to fund_transfers;
-^C
-mysql> alter table fund_transaction rename table fund_transaction to fund_transfers;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table fund_transaction to fund_transfers' at line 1
 mysql> rename table fund_transaction to fund_transfers;
 Query OK, 0 rows affected (0.02 sec)
 
@@ -302,6 +295,10 @@ mysql> select * from student where name like 's%';
 | stu_005 | Sherin   | sherin@college.edu   | 9447823460 |      54 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
 +---------+----------+----------------------+------------+---------+--------------+------------+------------+---------------------+---------------------+
 3 rows in set (0.00 sec)
+
+
+<---------------------------------------- EXPERINMENT_NO : 4 ----------------------------------------->
+    
 mysql> select * FROM event_details where cost = (SELECT MAX(cost) FROM event_details);
 +-----------+-----------+----------+---------------------+------+------------------+---------------------+------------+--------------+------------+------------+---------------------+
 | id        | name      | type     | updated_at          | cost | description      | event_day           | deadline   | class_id     | created_by | updated_by | created_at          |
@@ -418,3 +415,5 @@ mysql> select  class_id,
 | class_csa_s5 |             7 |
 +--------------+---------------+
 1 row in set (0.00 sec)
+
+<---------------------------------------- EXPERINMENT_NO : 5 ----------------------------------------->
