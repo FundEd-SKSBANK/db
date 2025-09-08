@@ -567,3 +567,31 @@ mysql> SELECT *
 | evt_002   | Workshop   | Academic | 2025-07-28 15:38:48 |  300 | Web development workshop  | 2023-11-20 00:00:00 | 2023-11-10 00:00:00 | class_csa_s5 | staff1     | staff1     | 2025-07-28 15:38:48 |
 | evt_003   | Sports Day | Sports   | 2025-07-28 15:38:48 |  200 | Annual sports competition | 2023-12-22 00:00:00 | 2023-12-10 00:00:00 | class_csa_s5 | staff1     | staff1     | 2025-07-28 15:38:48 |
 +-----------+------------+----------+---------------------+------+---------------------------+---------------------+---------------------+--------------+------------+------------+---------------------+
+
+<---------------------------------------- EXPERINMENT_NO : 6 ----------------------------------------->
+
+BEGIN;
+
+INSERT INTO student (
+    id, name, email_id, ph_no, roll_no,
+    class_id, created_by, updated_by
+) VALUES (
+    'stu_010', 'John Doe', 'john@example.com', '1234567890', 1,
+    'class_csa_s5', 'admin1', 'admin1'
+);
+
+COMMIT;
+
+mysql> select * from student;
++---------+----------+----------------------+------------+---------+--------------+------------+------------+---------------------+---------------------+
+| id      | name     | email_id             | ph_no      | roll_no | class_id     | created_by | updated_by | created_at          | updated_at          |
++---------+----------+----------------------+------------+---------+--------------+------------+------------+---------------------+---------------------+
+| stu_001 | Sabin    | sabin@college.edu    | 9447823456 |      52 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
+| stu_002 | Gautham  | gautham@college.edu  | 9447823457 |      33 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
+| stu_003 | Geo      | geo@college.edu      | 9447823458 |      34 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
+| stu_004 | Shawkath | shawkath@college.edu | 9447823459 |      44 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
+| stu_005 | Sherin   | sherin@college.edu   | 9447823460 |      54 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
+| stu_006 | Madhan   | madhan@college.edu   | 9447823461 |      56 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
+| stu_007 | Amil     | amil@college.edu     | 9447823462 |      18 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
+| stu_010 | John Doe | john@example.com     | 1234567890 |       1 | class_csa_s5 | admin1     | admin1     | 2025-09-08 14:30:17 | 2025-09-08 14:30:17 |
++---------+----------+----------------------+------------+---------+--------------+------------+------------+---------------------+---------------------+
