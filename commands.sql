@@ -595,3 +595,55 @@ mysql> select * from student;
 | stu_007 | Amil     | amil@college.edu     | 9447823462 |      18 | class_csa_s5 | staff1     | staff1     | 2025-08-04 14:02:35 | 2025-08-04 14:02:35 |
 | stu_010 | John Doe | john@example.com     | 1234567890 |       1 | class_csa_s5 | admin1     | admin1     | 2025-09-08 14:30:17 | 2025-09-08 14:30:17 |
 +---------+----------+----------------------+------------+---------+--------------+------------+------------+---------------------+---------------------+
+
+BEGIN;
+
+INSERT INTO event_details (
+    id, name, type, cost, description, event_day, deadline, class_id, created_by, updated_by
+) VALUES (
+    'event_003', 'Coding Marathon', 'Competition', 400, 'Annual Coding Event', '2023-12-05 09:00:00', '2023-11-30', 'class_csa_s5', 'staff1', 'staff1'
+);
+
+INSERT INTO event_purchase (
+    id, event_details_id, student_id, payment_id, created_by, purchase_status, purchase_date
+) VALUES (
+    'ep_006', 'event_003', 'stu_005', 'pay_005', 'staff1', 'Confirmed', '2023-11-25'
+);
+
+COMMIT;
+
+ROLLBACK;
+
+
+BEGIN;
+
+UPDATE fund_transfers
+SET amount = 52000.00
+WHERE id = 'ft_001';
+
+UPDATE fund_transfers
+SET amount = 13000.00
+WHERE id = 'ft_002';
+
+UPDATE fund_transfers
+SET amount = 26000.00
+WHERE id = 'ft_003';
+
+COMMIT;
+
+
+BEGIN;
+
+UPDATE fund_balance
+SET balance = 64000.00
+WHERE id = 'fb_001';
+
+SAVEPOINT sp_after_balance;
+
+UPDATE payment
+SET total_amt = 400
+WHERE id = 'invalid_id'; 
+
+ROLLBACK TO sp_after_balance;
+
+COMMIT;
